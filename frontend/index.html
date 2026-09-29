@@ -249,25 +249,46 @@ function Results({m,loading}){
 }
 
 function Progress({m}){
-  const cum=a=>{let t=0;return a.map(r=>t+=(r.repeat_rejected||0))};
+  const cum=a=>{let s=0;return a.map(r=>s+=(r.repeat_rejected||0))};
   const A=cum(m.memory_off.per_pr),B=cum(m.memory_on.per_pr),N=A.length;
+  const [t,setT]=useState(-1),ref=useRef(),raf=useRef();
+  const run=()=>{cancelAnimationFrame(raf.current);const s=performance.now();
+    const step=now=>{const p=Math.min(1,(now-s)/5000);setT(p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2);if(p<1)raf.current=requestAnimationFrame(step)};
+    setT(0);raf.current=requestAnimationFrame(step)};
+  useEffect(()=>{
+    const el=ref.current;if(!el)return;
+    if(matchMedia("(prefers-reduced-motion:reduce)").matches){setT(1);return}
+    let tm;
+    const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();tm=setTimeout(run,700)}},{threshold:.6});
+    io.observe(el);
+    return()=>{io.disconnect();clearTimeout(tm);cancelAnimationFrame(raf.current)}},[N]);
   if(!N) return null;
   const mx=Math.max(1,...A,...B),X=i=>44+(N>1?i*(500/(N-1)):250),Y=v=>168-v/mx*140;
-  const dd=a=>"M"+a.map((v,i)=>X(i)+","+Y(v)).join(" L");
-  const cps=[1,5,10,20].filter(k=>k<=N);
+  const f=Math.max(0,t)*(N-1),k=Math.min(N-1,Math.floor(f)),fr=f-k;
+  const part=a=>{const p=a.slice(0,k+1).map((v,i)=>[X(i),Y(v)]);
+    if(k<N-1)p.push([X(k)+(X(k+1)-X(k))*fr,Y(a[k])+(Y(a[k+1])-Y(a[k]))*fr]);return p};
+  const dd=p=>"M"+p.map(q=>q.join(",")).join(" L");
+  const PA=part(A),PB=part(B),ha=PA[PA.length-1],hb=PB[PB.length-1],on=t>=0;
+  const cps=[1,5,10,20].filter(c=>c<=N);
   const tx={font:"16px VT323,monospace",fill:"var(--mute)"};
   return <div>
-    <svg className="chart" viewBox="0 0 560 200" width="100%" role="img" aria-label="Running total of repeated rejections after each pull request, with and without memory">
+    <svg ref={ref} viewBox="0 0 560 200" width="100%" role="img" aria-label="Running total of repeated rejections after each pull request, with and without memory">
       <line x1="44" y1="168" x2="544" y2="168" style={{stroke:"var(--ink)"}}/>
-      <path className="draw" pathLength="1" d={dd(A)} fill="none" style={{stroke:"var(--mute)",strokeWidth:2}}/>
-      <path className="draw" pathLength="1" d={dd(B)} fill="none" style={{stroke:"var(--ink)",strokeWidth:3}}/>
-      <rect className="dot" x={X(N-1)-4} y={Y(A[N-1])-4} width="8" height="8" style={{fill:"var(--mute)"}}/>
-      <rect className="dot" x={X(N-1)-4} y={Y(B[N-1])-4} width="8" height="8" style={{fill:"var(--ink)"}}/>
+      <line x1="44" y1="28" x2="44" y2="168" style={{stroke:"var(--rule)"}}/>
+      {on&&<g>
+        <line x1={hb[0]} x2={hb[0]} y1="26" y2="168" style={{stroke:"var(--rule)"}}/>
+        <path d={dd(PA)} fill="none" style={{stroke:"var(--mute)",strokeWidth:2}}/>
+        <path d={dd(PB)} fill="none" style={{stroke:"var(--ink)",strokeWidth:3}}/>
+        <rect x={ha[0]-4} y={ha[1]-4} width="8" height="8" style={{fill:"var(--mute)"}}/>
+        <rect x={hb[0]-4} y={hb[1]-4} width="8" height="8" style={{fill:"var(--ink)"}}/>
+        <text x={hb[0]} y="18" textAnchor={hb[0]>480?"end":"middle"} style={{...tx,fill:"var(--ink)"}}>PR {Math.min(N,Math.round(f)+1)}: {A[Math.min(N-1,Math.round(f))]} vs {B[Math.min(N-1,Math.round(f))]}</text>
+      </g>}
       <text x="4" y={Y(mx)+5} style={tx}>{mx}</text><text x="4" y="172" style={tx}>0</text>
       {A.map((_,i)=>((i+1)===1||(i+1)%5===0)&&<text key={i} x={X(i)} y="192" textAnchor="middle" style={tx}>{i+1}</text>)}
     </svg>
     <p className="lab">Dim line: without memory. Bright line: with memory. Horizontal axis: pull requests replayed, in merge order.</p>
-    {cps.map(k=><div className="bar" key={k}>After {k} pull request{k>1?"s":""}: {A[k-1]} without memory, {B[k-1]} with memory</div>)}
+    <div className="acts" style={{margin:"0 0 12px"}}><button className="btn" onClick={run}>Replay graph</button></div>
+    {cps.map(c=><div className="bar" key={c} style={{opacity:on&&f>=c-1?1:.2,transition:"opacity .4s"}}>After {c} pull request{c>1?"s":""}: {A[c-1]} without memory, {B[c-1]} with memory</div>)}
   </div>;
 }
 
