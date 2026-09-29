@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="The Review Desk reviews pull requests and remembers every accept and reject decision.">
-<meta name="theme-color" content="#E6D9BE">
+<meta name="theme-color" content="#0A0E0B">
 <title>The Review Desk</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h3v3H0zM4 0h3v3H4zM0 4h3v3H0z' fill='%23111'/%3E%3Cpath d='M4 4h3v3H4z' fill='%239A2F22'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h3v3H0zM4 0h3v3H4zM0 4h3v3H0z' fill='%236CCB8A'/%3E%3Cpath d='M4 4h3v3H4z' fill='%239A2F22'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-:root{--paper:#E6D9BE;--panel:#F0E6CF;--ink:#111;--mute:#5A5140;--rule:#B8A88A;--yes:#245240;--no:#9A2F22;--addbg:#D5DEBF;--delbg:#E8C9B6}
+:root{color-scheme:dark;--paper:#0A0E0B;--panel:#111812;--ink:#B5E8C1;--mute:#7E9C86;--rule:#2F4634;--yes:#63C182;--no:#E0705C;--addbg:#12291A;--delbg:#331813;--acc:#6CCB8A}
 *{box-sizing:border-box;border-radius:0}
 html{scroll-padding-top:76px}
 body{margin:0;background:var(--paper);color:var(--ink);font:22px/1.3 VT323,monospace;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
@@ -120,7 +120,33 @@ dialog h2{font:400 16px/1.5 "Press Start 2P",monospace;margin:0 0 12px}dialog p{
 .tot{display:flex;gap:26px;flex-wrap:wrap;font:400 20px VT323,monospace;color:var(--mute)}
 .tot b{font:400 22px "Press Start 2P",monospace;color:var(--ink)}
 .tot b.z{color:var(--yes)}
-input[type=range]{width:100%;accent-color:#111}
+input[type=range]{width:100%;accent-color:#6CCB8A}
+.sk{opacity:.8}
+::selection{background:var(--ink);color:var(--paper)}
+*{scrollbar-color:var(--rule) var(--paper)}
+.h::before{content:"> ";color:var(--acc)}
+.cur{display:inline-block;width:.6em;height:1em;margin-left:4px;background:var(--acc);vertical-align:-.12em;animation:blink 1s steps(1) infinite}
+.mk i:last-child{animation:blink 1.4s steps(1) infinite}
+.toast{animation:in .25s steps(4) both}
+[data-rv="0"]{opacity:0;transform:translate(-16px,12px)}
+[data-rv="1"]{opacity:1;transform:none;transition:opacity .8s ease-out,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.rc{transition:opacity .4s}
+.rc.on .sq{animation:drop .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*35ms)}
+.rc.on .sq.r{animation:drop .45s cubic-bezier(.2,.8,.2,1) both,flash .9s ease-out both;animation-delay:calc(var(--i,0)*35ms)}
+.tot b{display:inline-block;animation:tick .35s ease-out}
+.draw{animation:draw 2.2s cubic-bezier(.4,0,.2,1) .2s both paused;stroke-dasharray:1}
+.dot{animation:fade .4s ease-out 2.2s both paused}
+.bar div,.mb{transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both paused}
+.chart[data-rv="1"] .draw,.chart[data-rv="1"] .dot,.mrow[data-rv="1"] .bar div,.tb[data-rv="1"] .mb{animation-play-state:running}
+@keyframes blink{50%{opacity:0}}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@keyframes drop{from{opacity:0;transform:translateY(-14px) scale(.6)}}
+@keyframes flash{0%,35%{background:var(--ink)}}
+@keyframes tick{from{opacity:.3;transform:translateY(-6px)}}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fade{from{opacity:0}}
+@keyframes grow{from{transform:scaleX(0)}}
+@media(prefers-reduced-motion:reduce){.cur,.mk i:last-child,.toast,.rc.on .sq,.tot b,.dot,.bar div,.mb{animation:none}.draw{animation:none;stroke-dasharray:none}}
 @media print{.top,footer,.toast{display:none}}
 </style>
 </head>
@@ -227,18 +253,20 @@ function Progress({m}){
   const A=cum(m.memory_off.per_pr),B=cum(m.memory_on.per_pr),N=A.length;
   if(!N) return null;
   const mx=Math.max(1,...A,...B),X=i=>44+(N>1?i*(500/(N-1)):250),Y=v=>168-v/mx*140;
-  const pts=a=>a.map((v,i)=>X(i)+","+Y(v)).join(" ");
+  const dd=a=>"M"+a.map((v,i)=>X(i)+","+Y(v)).join(" L");
   const cps=[1,5,10,20].filter(k=>k<=N);
   const tx={font:"16px VT323,monospace",fill:"var(--mute)"};
   return <div>
-    <svg viewBox="0 0 560 200" width="100%" role="img" aria-label="Running total of repeated rejections after each pull request, with and without memory">
+    <svg className="chart" viewBox="0 0 560 200" width="100%" role="img" aria-label="Running total of repeated rejections after each pull request, with and without memory">
       <line x1="44" y1="168" x2="544" y2="168" style={{stroke:"var(--ink)"}}/>
-      <polyline points={pts(A)} fill="none" style={{stroke:"var(--mute)",strokeWidth:2}}/>
-      <polyline points={pts(B)} fill="none" style={{stroke:"var(--ink)",strokeWidth:3}}/>
+      <path className="draw" pathLength="1" d={dd(A)} fill="none" style={{stroke:"var(--mute)",strokeWidth:2}}/>
+      <path className="draw" pathLength="1" d={dd(B)} fill="none" style={{stroke:"var(--ink)",strokeWidth:3}}/>
+      <rect className="dot" x={X(N-1)-4} y={Y(A[N-1])-4} width="8" height="8" style={{fill:"var(--mute)"}}/>
+      <rect className="dot" x={X(N-1)-4} y={Y(B[N-1])-4} width="8" height="8" style={{fill:"var(--ink)"}}/>
       <text x="4" y={Y(mx)+5} style={tx}>{mx}</text><text x="4" y="172" style={tx}>0</text>
       {A.map((_,i)=>((i+1)===1||(i+1)%5===0)&&<text key={i} x={X(i)} y="192" textAnchor="middle" style={tx}>{i+1}</text>)}
     </svg>
-    <p className="lab">Grey line: without memory. Black line: with memory. Horizontal axis: pull requests replayed, in merge order.</p>
+    <p className="lab">Dim line: without memory. Bright line: with memory. Horizontal axis: pull requests replayed, in merge order.</p>
     {cps.map(k=><div className="bar" key={k}>After {k} pull request{k>1?"s":""}: {A[k-1]} without memory, {B[k-1]} with memory</div>)}
   </div>;
 }
@@ -252,7 +280,7 @@ function Replay({m}){
   const mx=Math.max(1,...off.map(r=>r.generated),...on.map(r=>r.generated));
   const tot=(a,k)=>a.slice(0,n).reduce((t,r)=>t+(r[k]||0),0);
   const col=(r,i)=>{const sq=[...Array(r.accepted).fill("a"),...Array(Math.max(0,r.rejected-r.repeat_rejected)).fill("f"),...Array(r.repeat_rejected).fill("r")];
-    return <div key={i} className={"rc"+(i<n?" on":"")} role="img" aria-label={"Pull request "+r.pr+": "+r.generated+" comments, "+r.repeat_rejected+" repeated rejections"}>{sq.map((k,j)=><span key={j} className={"sq "+k}/>)}</div>};
+    return <div key={i} className={"rc"+(i<n?" on":"")} role="img" aria-label={"Pull request "+r.pr+": "+r.generated+" comments, "+r.repeat_rejected+" repeated rejections"}>{sq.map((k,j)=><span key={j} className={"sq "+k} style={{"--i":j}}/>)}</div>};
   const cur=n>0?[off[n-1],on[n-1]]:null;
   return <div className="page" style={{maxWidth:1100}}>
     <h2 className="h">Replay</h2>
@@ -267,7 +295,7 @@ function Replay({m}){
     <p role="status" aria-live="polite" style={{minHeight:52}}>{cur?"#"+cur[0].pr+" "+cur[0].title+". Without memory: "+cur[0].generated+" comments, "+cur[0].repeat_rejected+" repeated rejections. With memory: "+cur[1].generated+" comments, "+cur[1].repeat_rejected+" repeated.":"Press Play, drag the slider, or step through one pull request at a time."}</p>
     {[["Without memory",off],["With memory",on]].map(([t,a])=>{const rr=tot(a,"repeat_rejected");return <section className="arm" key={t}>
       <h3>{t}</h3>
-      <div className="tot"><span>Repeated rejections <b className={rr===0?"z":""}>{rr}</b></span><span>Comments {tot(a,"generated")}</span><span>Accepted {tot(a,"accepted")}</span></div>
+      <div className="tot"><span>Repeated rejections <b key={rr} className={rr===0?"z":""}>{rr}</b></span><span>Comments {tot(a,"generated")}</span><span>Accepted {tot(a,"accepted")}</span></div>
       <div className="rp" style={{minHeight:mx*17+14}}>{a.map(col)}</div></section>})}
     <div className="acts" style={{marginTop:18,gap:26}}>
       <span className="lg"><span className="sq a"/>Accepted</span>
@@ -275,6 +303,14 @@ function Replay({m}){
       <span className="lg"><span className="sq r"/>Rejected again</span></div>
     <p style={{marginTop:18}}>Every block comes from the measured replay. Nothing on this page is simulated after the fact.</p>
   </div>;
+}
+function Type({t}){
+  const [n,setN]=useState(0);
+  useEffect(()=>{
+    if(matchMedia("(prefers-reduced-motion:reduce)").matches){setN(t.length);return}
+    const i=setInterval(()=>setN(x=>{if(x>=t.length){clearInterval(i);return x}return x+1}),28);
+    return()=>clearInterval(i)},[t]);
+  return <>{t.slice(0,n)}<span className="cur" aria-hidden="true"/><span style={{visibility:"hidden"}}>{t.slice(n)}</span></>;
 }
 const PAGES=["review","conventions","results","replay","how"];
 const getPage=()=>{const p=location.hash.replace("#/","");return PAGES.includes(p)?p:"review"};
@@ -400,7 +436,7 @@ function App(){
       <Nav page={page}/></div></header>
     <div className="wrap" id="main">
       {page==="review"&&<div className="hero">
-        <div><h1>A code reviewer that stops repeating what your team already turned down.</h1>
+        <div><h1 aria-label="A code reviewer that stops repeating what your team already turned down."><span aria-hidden="true"><Type t="A code reviewer that stops repeating what your team already turned down."/></span></h1>
           <p className="dek">Reviews pull requests, puts comments on the lines they refer to, and remembers every accept and reject.</p></div>
         <div className="stat">
           {met===undefined?<><Sk h={40} w="50%"/><Sk w="90%" m="0"/></>
@@ -471,6 +507,22 @@ function App(){
   </div>;
 }
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+
+/* Wave reveal: blocks fade in from top-left to bottom-right as they scroll into view. */
+(function(){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches||!("IntersectionObserver" in window))return;
+  const SEL=".hero .dek,.hero .stat,main section>*,aside section>*,aside>p,.page>*,.step,.rl,.mrow,.tb,.chart,.keys";
+  const io=new IntersectionObserver(es=>{
+    es.filter(e=>e.isIntersecting)
+      .sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top||a.boundingClientRect.left-b.boundingClientRect.left)
+      .forEach((e,i)=>{
+        e.target.style.setProperty("--d",Math.min(i*70+e.boundingClientRect.left/innerWidth*160,900)+"ms");
+        e.target.dataset.rv="1";io.unobserve(e.target)})
+  },{threshold:0,rootMargin:"0px 0px -6% 0px"});
+  const tag=()=>document.querySelectorAll(SEL).forEach(el=>{if(!el.dataset.rv){el.dataset.rv="0";io.observe(el)}});
+  new MutationObserver(tag).observe(document.getElementById("root"),{childList:true,subtree:true});
+  tag();
+})();
 </script>
 </body>
 </html>
