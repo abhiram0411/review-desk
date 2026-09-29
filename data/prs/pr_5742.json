@@ -1,0 +1,8 @@
+{
+  "id": "PR-5742",
+  "number": 5742,
+  "title": "Docs: Fix escaping in HTML escaping example",
+  "url": "https://github.com/pallets/flask/pull/5742",
+  "merged_at": "2025-08-18T17:20:07Z",
+  "diff": "diff --git a/docs/quickstart.rst b/docs/quickstart.rst\nindex f763bb1e06..dde4572870 100644\n--- a/docs/quickstart.rst\n+++ b/docs/quickstart.rst\n@@ -139,18 +139,16 @@ how you're using untrusted data.\n \n .. code-block:: python\n \n+    from flask import request\n     from markupsafe import escape\n \n-    @app.route(\"/<name>\")\n-    def hello(name):\n+    @app.route(\"/hello\")\n+    def hello():\n+        name = request.args.get(\"name\", \"Flask\")\n         return f\"Hello, {escape(name)}!\"\n \n-If a user managed to submit the name ``<script>alert(\"bad\")</script>``,\n-escaping causes it to be rendered as text, rather than running the\n-script in the user's browser.\n-\n-``<name>`` in the route captures a value from the URL and passes it to\n-the view function. These variable rules are explained below.\n+If a user submits ``/hello?name=<script>alert(\"bad\")</script>``, escaping causes\n+it to be rendered as text, rather than running the script in the user's browser.\n \n \n Routing\n"
+}

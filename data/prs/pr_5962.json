@@ -1,0 +1,8 @@
+{
+  "id": "PR-5962",
+  "number": 5962,
+  "title": "remove unicode host test",
+  "url": "https://github.com/pallets/flask/pull/5962",
+  "merged_at": "2026-03-24T13:55:57Z",
+  "diff": "diff --git a/tests/test_reqctx.py b/tests/test_reqctx.py\nindex 78561f520d..3c5d5332ad 100644\n--- a/tests/test_reqctx.py\n+++ b/tests/test_reqctx.py\n@@ -294,27 +294,6 @@ def test_bad_environ_raises_bad_request():\n     assert response.status_code == 400\n \n \n-def test_environ_for_valid_idna_completes():\n-    app = flask.Flask(__name__)\n-\n-    @app.route(\"/\")\n-    def index():\n-        return \"Hello World!\"\n-\n-    from flask.testing import EnvironBuilder\n-\n-    builder = EnvironBuilder(app)\n-    environ = builder.get_environ()\n-\n-    # these characters are all IDNA-compatible\n-    environ[\"HTTP_HOST\"] = \"\u0105\u015b\u017a\u00e4\u00fc\u0436\u0160\u00df\u044f.com\"\n-\n-    with app.request_context(environ) as ctx:\n-        response = app.full_dispatch_request(ctx)\n-\n-    assert response.status_code == 200\n-\n-\n def test_normal_environ_completes():\n     app = flask.Flask(__name__)\n \n"
+}

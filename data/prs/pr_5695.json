@@ -1,0 +1,8 @@
+{
+  "id": "PR-5695",
+  "number": 5695,
+  "title": "Remove HTTP Public Key Pinning from docs",
+  "url": "https://github.com/pallets/flask/pull/5695",
+  "merged_at": "2025-03-29T22:17:48Z",
+  "diff": "diff --git a/docs/web-security.rst b/docs/web-security.rst\nindex f13bb7b864..d742056fea 100644\n--- a/docs/web-security.rst\n+++ b/docs/web-security.rst\n@@ -269,19 +269,6 @@ values (or any values that need secure signatures).\n .. _samesite_support: https://caniuse.com/#feat=same-site-cookie-attribute\n \n \n-HTTP Public Key Pinning (HPKP)\n-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n-\n-This tells the browser to authenticate with the server using only the specific\n-certificate key to prevent MITM attacks.\n-\n-.. warning::\n-   Be careful when enabling this, as it is very difficult to undo if you set up\n-   or upgrade your key incorrectly.\n-\n-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Public_Key_Pinning\n-\n-\n Copy/Paste to Terminal\n ----------------------\n \n"
+}

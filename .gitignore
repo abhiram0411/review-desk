@@ -1,0 +1,19 @@
+# Secrets. Never commit these.
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local state and backups
+data/decisions.json
+data/decisions.json.tmp
+data/decisions.json.bad
+data/.bank_seeded
+data/metrics_10pr_backup.json
+data/prs_10pr_backup/
+main_backup.py
+frontend/index_backup.html

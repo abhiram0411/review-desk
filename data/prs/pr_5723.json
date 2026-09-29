@@ -1,0 +1,8 @@
+{
+  "id": "PR-5723",
+  "number": 5723,
+  "title": "Update macOS UI reference to \u201cSystem Settings\u201d",
+  "url": "https://github.com/pallets/flask/pull/5723",
+  "merged_at": "2025-08-18T17:08:08Z",
+  "diff": "diff --git a/docs/server.rst b/docs/server.rst\nindex 11e976bc73..d6beb1d86d 100644\n--- a/docs/server.rst\n+++ b/docs/server.rst\n@@ -77,7 +77,7 @@ following example shows that process id 6847 is using port 5000.\n \n macOS Monterey and later automatically starts a service that uses port\n 5000. You can choose to disable this service instead of using a different port by\n-searching for \"AirPlay Receiver\" in System Preferences and toggling it off.\n+searching for \"AirPlay Receiver\" in System Settings and toggling it off.\n \n \n Deferred Errors on Reload\n"
+}

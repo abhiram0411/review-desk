@@ -1,0 +1,8 @@
+{
+  "id": "PR-5777",
+  "number": 5777,
+  "title": "use IO[bytes] instead of BinaryIO for wider compatibility",
+  "url": "https://github.com/pallets/flask/pull/5777",
+  "merged_at": "2025-08-18T17:26:12Z",
+  "diff": "diff --git a/CHANGES.rst b/CHANGES.rst\nindex 1c41e34b37..a5761bc22b 100644\n--- a/CHANGES.rst\n+++ b/CHANGES.rst\n@@ -5,6 +5,7 @@ Unreleased\n \n -   When using ``follow_redirects`` in the test client, the final state\n     of ``session`` is correct. :issue:`5786`\n+-   Relax type hint for passing bytes IO to ``send_file``. :issue:`5776`\n \n \n Version 3.1.1\ndiff --git a/src/flask/helpers.py b/src/flask/helpers.py\nindex 90a0e0c664..081548a97b 100644\n--- a/src/flask/helpers.py\n+++ b/src/flask/helpers.py\n@@ -398,7 +398,7 @@ def _prepare_send_file_kwargs(**kwargs: t.Any) -> dict[str, t.Any]:\n \n \n def send_file(\n-    path_or_file: os.PathLike[t.AnyStr] | str | t.BinaryIO,\n+    path_or_file: os.PathLike[t.AnyStr] | str | t.IO[bytes],\n     mimetype: str | None = None,\n     as_attachment: bool = False,\n     download_name: str | None = None,\n"
+}

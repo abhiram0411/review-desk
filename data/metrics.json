@@ -1,0 +1,356 @@
+{
+  "memory_off": {
+    "per_pr": [
+      {
+        "pr": 5671,
+        "title": "Update app factory docs",
+        "generated": 1,
+        "accepted": 0,
+        "rejected": 1,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5674,
+        "title": "Handle help arg by itself the same as no args",
+        "generated": 3,
+        "accepted": 0,
+        "rejected": 3,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 5695,
+        "title": "Remove HTTP Public Key Pinning from docs",
+        "generated": 6,
+        "accepted": 1,
+        "rejected": 5,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 5659,
+        "title": "Async Iterable Response",
+        "generated": 5,
+        "accepted": 0,
+        "rejected": 5,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5737,
+        "title": "Fix global CONTRIBUTING link",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5797,
+        "title": "push preserved contexts in correct order",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5723,
+        "title": "Update macOS UI reference to \u201cSystem Settings\u201d",
+        "generated": 3,
+        "accepted": 1,
+        "rejected": 2,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 5742,
+        "title": "Docs: Fix escaping in HTML escaping example",
+        "generated": 3,
+        "accepted": 1,
+        "rejected": 2,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 5777,
+        "title": "use IO[bytes] instead of BinaryIO for wider compatibility",
+        "generated": 6,
+        "accepted": 1,
+        "rejected": 5,
+        "repeat_rejected": 5
+      },
+      {
+        "pr": 5798,
+        "title": "security docs for TRUSTED_HOSTS",
+        "generated": 3,
+        "accepted": 0,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5799,
+        "title": "refactor stream_with_context for async views",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5898,
+        "title": "redirect defaults to 303",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5808,
+        "title": "fix annotation for select_jinja_autoescape",
+        "generated": 5,
+        "accepted": 2,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5827,
+        "title": "clarify 415 vs 400 errors for request.json",
+        "generated": 6,
+        "accepted": 0,
+        "rejected": 6,
+        "repeat_rejected": 6
+      },
+      {
+        "pr": 5899,
+        "title": "deprecate `should_ignore_error`",
+        "generated": 5,
+        "accepted": 1,
+        "rejected": 4,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 5903,
+        "title": "Abort if the instance folder cannot be created",
+        "generated": 3,
+        "accepted": 1,
+        "rejected": 2,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 5962,
+        "title": "remove unicode host test",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 6013,
+        "title": "autoescape selection uses case-insensitive comparison",
+        "generated": 5,
+        "accepted": 1,
+        "rejected": 4,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 6095,
+        "title": "Replace the use of private `monkeypatch` fixture API",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 6096,
+        "title": "Fix `.partition(\":\")` usage on potential IPv6 addresses",
+        "generated": 5,
+        "accepted": 1,
+        "rejected": 4,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 6133,
+        "title": "add `app.query` route decorator",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      }
+    ],
+    "summary": {
+      "total_generated": 96,
+      "total_repeat_rejected": 62,
+      "total_accepted": 29
+    }
+  },
+  "memory_on": {
+    "per_pr": [
+      {
+        "pr": 5671,
+        "title": "Update app factory docs",
+        "generated": 5,
+        "accepted": 0,
+        "rejected": 5,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5674,
+        "title": "Handle help arg by itself the same as no args",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5695,
+        "title": "Remove HTTP Public Key Pinning from docs",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5659,
+        "title": "Async Iterable Response",
+        "generated": 2,
+        "accepted": 1,
+        "rejected": 1,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5737,
+        "title": "Fix global CONTRIBUTING link",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5797,
+        "title": "push preserved contexts in correct order",
+        "generated": 6,
+        "accepted": 4,
+        "rejected": 2,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5723,
+        "title": "Update macOS UI reference to \u201cSystem Settings\u201d",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5742,
+        "title": "Docs: Fix escaping in HTML escaping example",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5777,
+        "title": "use IO[bytes] instead of BinaryIO for wider compatibility",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5798,
+        "title": "security docs for TRUSTED_HOSTS",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5799,
+        "title": "refactor stream_with_context for async views",
+        "generated": 3,
+        "accepted": 3,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5898,
+        "title": "redirect defaults to 303",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5808,
+        "title": "fix annotation for select_jinja_autoescape",
+        "generated": 3,
+        "accepted": 3,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5827,
+        "title": "clarify 415 vs 400 errors for request.json",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5899,
+        "title": "deprecate `should_ignore_error`",
+        "generated": 3,
+        "accepted": 3,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5903,
+        "title": "Abort if the instance folder cannot be created",
+        "generated": 4,
+        "accepted": 4,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5962,
+        "title": "remove unicode host test",
+        "generated": 3,
+        "accepted": 3,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6013,
+        "title": "autoescape selection uses case-insensitive comparison",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6095,
+        "title": "Replace the use of private `monkeypatch` fixture API",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6096,
+        "title": "Fix `.partition(\":\")` usage on potential IPv6 addresses",
+        "generated": 6,
+        "accepted": 6,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6133,
+        "title": "add `app.query` route decorator",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      }
+    ],
+    "summary": {
+      "total_generated": 47,
+      "total_repeat_rejected": 0,
+      "total_accepted": 39
+    }
+  }
+}

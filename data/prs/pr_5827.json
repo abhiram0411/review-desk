@@ -1,0 +1,8 @@
+{
+  "id": "PR-5827",
+  "number": 5827,
+  "title": "clarify 415 vs 400 errors for request.json",
+  "url": "https://github.com/pallets/flask/pull/5827",
+  "merged_at": "2026-01-25T02:46:57Z",
+  "diff": "diff --git a/docs/patterns/javascript.rst b/docs/patterns/javascript.rst\nindex d58a3eb6b4..b97ffc6d09 100644\n--- a/docs/patterns/javascript.rst\n+++ b/docs/patterns/javascript.rst\n@@ -136,7 +136,8 @@ In general, prefer sending request data as form data, as would be used\n when submitting an HTML form. JSON can represent more complex data, but\n unless you need that it's better to stick with the simpler format. When\n sending JSON data, the ``Content-Type: application/json`` header must be\n-sent as well, otherwise Flask will return a 400 error.\n+sent as well, otherwise Flask will return a 415 Unsupported Media Type\n+error.\n \n .. code-block:: javascript\n \n@@ -244,8 +245,9 @@ Receiving JSON in Views\n \n Use the :attr:`~flask.Request.json` property of the\n :data:`~flask.request` object to decode the request's body as JSON. If\n-the body is not valid JSON, or the ``Content-Type`` header is not set to\n-``application/json``, a 400 Bad Request error will be raised.\n+the body is not valid JSON, a 400 Bad Request error will be raised. If\n+the ``Content-Type`` header is not set to ``application/json``, a 415\n+Unsupported Media Type error will be raised.\n \n .. code-block:: python\n \n"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "PR-5674",
+  "number": 5674,
+  "title": "Handle help arg by itself the same as no args",
+  "url": "https://github.com/pallets/flask/pull/5674",
+  "merged_at": "2025-03-29T22:15:04Z",
+  "diff": "diff --git a/CHANGES.rst b/CHANGES.rst\nindex 14c6a6ac17..fd88e12d55 100644\n--- a/CHANGES.rst\n+++ b/CHANGES.rst\n@@ -4,6 +4,8 @@ Version 3.1.1\n Unreleased\n \n -   Fix type hint for `cli_runner.invoke`. :issue:`5645`\n+-   ``flask --help`` loads the app and plugins first to make sure all commands\n+    are shown. :issue:5673`\n \n \n Version 3.1.0\ndiff --git a/src/flask/cli.py b/src/flask/cli.py\nindex dd03f3c556..ed11f256a1 100644\n--- a/src/flask/cli.py\n+++ b/src/flask/cli.py\n@@ -684,7 +684,9 @@ def make_context(\n         return super().make_context(info_name, args, parent=parent, **extra)\n \n     def parse_args(self, ctx: click.Context, args: list[str]) -> list[str]:\n-        if not args and self.no_args_is_help:\n+        if (not args and self.no_args_is_help) or (\n+            len(args) == 1 and args[0] in self.get_help_option_names(ctx)\n+        ):\n             # Attempt to load --env-file and --app early in case they\n             # were given as env vars. Otherwise no_args_is_help will not\n             # see commands from app.cli.\n"
+}

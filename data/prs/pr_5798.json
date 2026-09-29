@@ -1,0 +1,8 @@
+{
+  "id": "PR-5798",
+  "number": 5798,
+  "title": "security docs for TRUSTED_HOSTS",
+  "url": "https://github.com/pallets/flask/pull/5798",
+  "merged_at": "2025-08-18T18:44:57Z",
+  "diff": "diff --git a/docs/web-security.rst b/docs/web-security.rst\nindex f8095585b1..d78e0454e7 100644\n--- a/docs/web-security.rst\n+++ b/docs/web-security.rst\n@@ -269,6 +269,27 @@ values (or any values that need secure signatures).\n .. _samesite_support: https://caniuse.com/#feat=same-site-cookie-attribute\n \n \n+Host Header Validation\n+----------------------\n+\n+The ``Host`` header is used by the client to indicate what host name the request\n+was made to. This is used, for example, by ``url_for(..., _external=True)`` to\n+generate full URLs, for use in email or other messages outside the browser\n+window.\n+\n+By default the app doesn't know what host(s) it is allowed to be accessed\n+through, and assumes any host is valid. Although browsers do not allow setting\n+the ``Host`` header, requests made by attackers in other scenarios could set\n+the ``Host`` header to a value they want.\n+\n+When deploying your application, set :data:`TRUSTED_HOSTS` to restrict what\n+values the ``Host`` header may be.\n+\n+The ``Host`` header may be modified by proxies in between the client and your\n+application. See :doc:`deploying/proxy_fix` to tell your app which proxy values\n+to trust.\n+\n+\n Copy/Paste to Terminal\n ----------------------\n \n"
+}

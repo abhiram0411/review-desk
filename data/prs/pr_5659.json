@@ -1,0 +1,8 @@
+{
+  "id": "PR-5659",
+  "number": 5659,
+  "title": "Async Iterable Response",
+  "url": "https://github.com/pallets/flask/pull/5659",
+  "merged_at": "2025-03-30T20:15:54Z",
+  "diff": "diff --git a/CHANGES.rst b/CHANGES.rst\nindex a65b68b543..51c99d4266 100644\n--- a/CHANGES.rst\n+++ b/CHANGES.rst\n@@ -6,6 +6,9 @@ Unreleased\n -   Fix type hint for `cli_runner.invoke`. :issue:`5645`\n -   ``flask --help`` loads the app and plugins first to make sure all commands\n     are shown. :issue:5673`\n+-   Mark sans-io base class as being able to handle views that return\n+    ``AsyncIterable``. This is not accurate for Flask, but makes typing easier\n+    for Quart. :pr:`5659`\n \n \n Version 3.1.0\ndiff --git a/src/flask/typing.py b/src/flask/typing.py\nindex e7234e9670..6b70c40973 100644\n--- a/src/flask/typing.py\n+++ b/src/flask/typing.py\n@@ -1,5 +1,6 @@\n from __future__ import annotations\n \n+import collections.abc as cabc\n import typing as t\n \n if t.TYPE_CHECKING:  # pragma: no cover\n@@ -17,6 +18,8 @@\n     t.Mapping[str, t.Any],\n     t.Iterator[str],\n     t.Iterator[bytes],\n+    cabc.AsyncIterable[str],  # for Quart, until App is generic.\n+    cabc.AsyncIterable[bytes],\n ]\n \n # the possible types for an individual HTTP header\n"
+}

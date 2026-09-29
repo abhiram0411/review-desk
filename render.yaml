@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: review-desk
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Public link: no live reviews, no /docs. Remove READ_ONLY to allow live reviews.
+      - key: READ_ONLY
+        value: "1"
+      - key: PUBLIC_MODE
+        value: "1"
+      # Separate bank so local test decisions never leak into the public copy.
+      - key: BANK_ID
+        value: review-agent-public
+      # Secrets: Render asks you for these when you create the service.
+      - key: HINDSIGHT_API_URL
+        sync: false
+      - key: HINDSIGHT_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false

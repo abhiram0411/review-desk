@@ -1,0 +1,8 @@
+{
+  "id": "PR-5903",
+  "number": 5903,
+  "title": "Abort if the instance folder cannot be created",
+  "url": "https://github.com/pallets/flask/pull/5903",
+  "merged_at": "2026-01-28T15:43:01Z",
+  "diff": "diff --git a/docs/tutorial/factory.rst b/docs/tutorial/factory.rst\nindex 39febd135f..381477f975 100644\n--- a/docs/tutorial/factory.rst\n+++ b/docs/tutorial/factory.rst\n@@ -56,10 +56,7 @@ directory should be treated as a package.\n             app.config.from_mapping(test_config)\n \n         # ensure the instance folder exists\n-        try:\n-            os.makedirs(app.instance_path)\n-        except OSError:\n-            pass\n+        os.makedirs(app.instance_path, exist_ok=True)\n \n         # a simple page that says hello\n         @app.route('/hello')\ndiff --git a/examples/tutorial/flaskr/__init__.py b/examples/tutorial/flaskr/__init__.py\nindex e35934d676..ab96e719ee 100644\n--- a/examples/tutorial/flaskr/__init__.py\n+++ b/examples/tutorial/flaskr/__init__.py\n@@ -21,10 +21,7 @@ def create_app(test_config=None):\n         app.config.update(test_config)\n \n     # ensure the instance folder exists\n-    try:\n-        os.makedirs(app.instance_path)\n-    except OSError:\n-        pass\n+    os.makedirs(app.instance_path, exist_ok=True)\n \n     @app.route(\"/hello\")\n     def hello():\n"
+}

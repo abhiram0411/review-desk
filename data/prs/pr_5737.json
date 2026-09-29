@@ -1,0 +1,8 @@
+{
+  "id": "PR-5737",
+  "number": 5737,
+  "title": "Fix global CONTRIBUTING link",
+  "url": "https://github.com/pallets/flask/pull/5737",
+  "merged_at": "2025-05-20T16:30:06Z",
+  "diff": "diff --git a/docs/contributing.rst b/docs/contributing.rst\nindex d44f865f57..ca4b3aeef4 100644\n--- a/docs/contributing.rst\n+++ b/docs/contributing.rst\n@@ -1,7 +1,7 @@\n Contributing\n ============\n \n-See the Pallets `detailed contributing documentation <_contrib>`_ for many ways\n+See the Pallets `detailed contributing documentation <contrib_>`_ for many ways\n to contribute, including reporting issues, requesting features, asking or\n answering questions, and making PRs.\n \n"
+}

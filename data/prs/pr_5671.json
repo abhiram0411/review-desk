@@ -1,0 +1,8 @@
+{
+  "id": "PR-5671",
+  "number": 5671,
+  "title": "Update app factory docs",
+  "url": "https://github.com/pallets/flask/pull/5671",
+  "merged_at": "2025-03-29T22:10:56Z",
+  "diff": "diff --git a/docs/patterns/appfactories.rst b/docs/patterns/appfactories.rst\nindex 32fd062b50..0f248783cd 100644\n--- a/docs/patterns/appfactories.rst\n+++ b/docs/patterns/appfactories.rst\n@@ -99,9 +99,9 @@ to the factory like this:\n \n .. code-block:: text\n \n-    $ flask --app hello:create_app(local_auth=True) run\n+    $ flask --app 'hello:create_app(local_auth=True)' run\n \n-Then the ``create_app`` factory in ``myapp`` is called with the keyword\n+Then the ``create_app`` factory in ``hello`` is called with the keyword\n argument ``local_auth=True``. See :doc:`/cli` for more detail.\n \n Factory Improvements\n"
+}

@@ -1,0 +1,180 @@
+{
+  "memory_off": {
+    "per_pr": [
+      {
+        "pr": 5898,
+        "title": "redirect defaults to 303",
+        "generated": 6,
+        "accepted": 2,
+        "rejected": 4,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5808,
+        "title": "fix annotation for select_jinja_autoescape",
+        "generated": 6,
+        "accepted": 3,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5827,
+        "title": "clarify 415 vs 400 errors for request.json",
+        "generated": 3,
+        "accepted": 0,
+        "rejected": 3,
+        "repeat_rejected": 3
+      },
+      {
+        "pr": 5899,
+        "title": "deprecate `should_ignore_error`",
+        "generated": 6,
+        "accepted": 1,
+        "rejected": 5,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 5903,
+        "title": "Abort if the instance folder cannot be created",
+        "generated": 3,
+        "accepted": 1,
+        "rejected": 2,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 5962,
+        "title": "remove unicode host test",
+        "generated": 6,
+        "accepted": 2,
+        "rejected": 4,
+        "repeat_rejected": 2
+      },
+      {
+        "pr": 6013,
+        "title": "autoescape selection uses case-insensitive comparison",
+        "generated": 6,
+        "accepted": 1,
+        "rejected": 5,
+        "repeat_rejected": 5
+      },
+      {
+        "pr": 6095,
+        "title": "Replace the use of private `monkeypatch` fixture API",
+        "generated": 6,
+        "accepted": 2,
+        "rejected": 4,
+        "repeat_rejected": 4
+      },
+      {
+        "pr": 6096,
+        "title": "Fix `.partition(\":\")` usage on potential IPv6 addresses",
+        "generated": 5,
+        "accepted": 4,
+        "rejected": 1,
+        "repeat_rejected": 1
+      },
+      {
+        "pr": 6133,
+        "title": "add `app.query` route decorator",
+        "generated": 4,
+        "accepted": 2,
+        "rejected": 2,
+        "repeat_rejected": 2
+      }
+    ],
+    "summary": {
+      "total_generated": 51,
+      "total_repeat_rejected": 26,
+      "total_accepted": 18
+    }
+  },
+  "memory_on": {
+    "per_pr": [
+      {
+        "pr": 5898,
+        "title": "redirect defaults to 303",
+        "generated": 5,
+        "accepted": 0,
+        "rejected": 5,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5808,
+        "title": "fix annotation for select_jinja_autoescape",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5827,
+        "title": "clarify 415 vs 400 errors for request.json",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5899,
+        "title": "deprecate `should_ignore_error`",
+        "generated": 6,
+        "accepted": 4,
+        "rejected": 2,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5903,
+        "title": "Abort if the instance folder cannot be created",
+        "generated": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 5962,
+        "title": "remove unicode host test",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6013,
+        "title": "autoescape selection uses case-insensitive comparison",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6095,
+        "title": "Replace the use of private `monkeypatch` fixture API",
+        "generated": 1,
+        "accepted": 1,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6096,
+        "title": "Fix `.partition(\":\")` usage on potential IPv6 addresses",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      },
+      {
+        "pr": 6133,
+        "title": "add `app.query` route decorator",
+        "generated": 2,
+        "accepted": 2,
+        "rejected": 0,
+        "repeat_rejected": 0
+      }
+    ],
+    "summary": {
+      "total_generated": 21,
+      "total_repeat_rejected": 0,
+      "total_accepted": 14
+    }
+  }
+}

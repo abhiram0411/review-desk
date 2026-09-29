@@ -1,0 +1,177 @@
+[
+  {
+    "id": "PR-6096",
+    "number": 6096,
+    "title": "Fix `.partition(\":\")` usage on potential IPv6 addresses",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/6096",
+    "diff_lines": 93
+  },
+  {
+    "id": "PR-6133",
+    "number": 6133,
+    "title": "add `app.query` route decorator",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/6133",
+    "diff_lines": 58
+  },
+  {
+    "id": "PR-6095",
+    "number": 6095,
+    "title": "Replace the use of private `monkeypatch` fixture API",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/6095",
+    "diff_lines": 109
+  },
+  {
+    "id": "PR-6013",
+    "number": 6013,
+    "title": "autoescape selection uses case-insensitive comparison",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/6013",
+    "diff_lines": 36
+  },
+  {
+    "id": "PR-5962",
+    "number": 5962,
+    "title": "remove unicode host test",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5962",
+    "diff_lines": 32
+  },
+  {
+    "id": "PR-5945",
+    "number": 5945,
+    "title": "add zizmor to scan workflows",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5945",
+    "diff_lines": 156
+  },
+  {
+    "id": "PR-5903",
+    "number": 5903,
+    "title": "Abort if the instance folder cannot be created",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5903",
+    "diff_lines": 32
+  },
+  {
+    "id": "PR-5898",
+    "number": 5898,
+    "title": "redirect defaults to 303",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5898",
+    "diff_lines": 75
+  },
+  {
+    "id": "PR-5808",
+    "number": 5808,
+    "title": "fix annotation for select_jinja_autoescape",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5808",
+    "diff_lines": 13
+  },
+  {
+    "id": "PR-5827",
+    "number": 5827,
+    "title": "clarify 415 vs 400 errors for request.json",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5827",
+    "diff_lines": 26
+  },
+  {
+    "id": "PR-5899",
+    "number": 5899,
+    "title": "deprecate `should_ignore_error`",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5899",
+    "diff_lines": 77
+  },
+  {
+    "id": "PR-5799",
+    "number": 5799,
+    "title": "refactor stream_with_context for async views",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5799",
+    "diff_lines": 168
+  },
+  {
+    "id": "PR-5795",
+    "number": 5795,
+    "title": "Update GitHub Actions workflow for artifact handling",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5795",
+    "diff_lines": 54
+  },
+  {
+    "id": "PR-5797",
+    "number": 5797,
+    "title": "push preserved contexts in correct order",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5797",
+    "diff_lines": 78
+  },
+  {
+    "id": "PR-5723",
+    "number": 5723,
+    "title": "Update macOS UI reference to \u201cSystem Settings\u201d",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5723",
+    "diff_lines": 13
+  },
+  {
+    "id": "PR-5742",
+    "number": 5742,
+    "title": "Docs: Fix escaping in HTML escaping example",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5742",
+    "diff_lines": 29
+  },
+  {
+    "id": "PR-5777",
+    "number": 5777,
+    "title": "use IO[bytes] instead of BinaryIO for wider compatibility",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5777",
+    "diff_lines": 25
+  },
+  {
+    "id": "PR-5798",
+    "number": 5798,
+    "title": "security docs for TRUSTED_HOSTS",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5798",
+    "diff_lines": 32
+  },
+  {
+    "id": "PR-5757",
+    "number": 5757,
+    "title": "svg logo",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5757",
+    "diff_lines": 73
+  },
+  {
+    "id": "PR-5754",
+    "number": 5754,
+    "title": "remove slsa provenance",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5754",
+    "diff_lines": 71
+  },
+  {
+    "id": "PR-5737",
+    "number": 5737,
+    "title": "Fix global CONTRIBUTING link",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5737",
+    "diff_lines": 13
+  },
+  {
+    "id": "PR-5659",
+    "number": 5659,
+    "title": "Async Iterable Response",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5659",
+    "diff_lines": 34
+  },
+  {
+    "id": "PR-5674",
+    "number": 5674,
+    "title": "Handle help arg by itself the same as no args",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5674",
+    "diff_lines": 28
+  },
+  {
+    "id": "PR-5671",
+    "number": 5671,
+    "title": "Update app factory docs",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5671",
+    "diff_lines": 16
+  },
+  {
+    "id": "PR-5695",
+    "number": 5695,
+    "title": "Remove HTTP Public Key Pinning from docs",
+    "url": "https://api.github.com/repos/pallets/flask/pulls/5695",
+    "diff_lines": 24
+  }
+]
