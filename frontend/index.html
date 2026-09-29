@@ -419,14 +419,14 @@ function App(){
               :prs.map(p=><button role="listitem" key={p.number} className="ix" aria-pressed={pr&&pr.number===p.number} onClick={()=>pick(p.number)}>
                 <span>#{p.number}</span><span>{p.title}</span><span>{p.diff_lines} ln</span></button>)}
             </div>
-            {ro?<p className="empty">This public link is read only. Watch the Replay page, or run the project locally and paste any public GitHub pull request link to review it live.</p>
+            {ro?<p className="empty">This public link is read only, so live reviews are switched off. Select a pull request to read its patch, watch the <a className="lnk" href="#/replay">Replay</a>, or run the project locally and paste any public GitHub pull request link to review it live.</p>
             :<div className="bar2">
               <input className="in" aria-label="GitHub pull request link" placeholder="Or paste a link: github.com/owner/repo/pull/123" value={url} onChange={e=>setUrl(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&url.trim()&&!loadPr)loadUrl()}}/>
               <button className="btn" disabled={!url.trim()||loadPr} onClick={loadUrl}>Load pull request</button></div>}
             {loadPr&&<div style={{marginTop:14}}><Sk h={180}/></div>}
-            {!pr&&!loadPr&&prs&&prs.length>0&&<p className="empty">Select a pull request above to load its patch. Then press Review to see comments placed on the lines they refer to.</p>}
+            {!ro&&!pr&&!loadPr&&prs&&prs.length>0&&<p className="empty">Select a pull request above to load its patch. Then press Review to see comments placed on the lines they refer to.</p>}
             {pr&&<><div className="bar2">
-              <button className="btn solid" disabled={busy} onClick={review}>{busy?"Reviewing":"Review this pull request"}</button>
+              <button className="btn solid" disabled={busy||ro} onClick={review}>{ro?"Live review is off on this link":busy?"Reviewing":"Review this pull request"}</button>
               <button className="btn" aria-pressed={chg} onClick={()=>setChg(!chg)}>Changed lines only</button>
               <span className="lab" style={{margin:0}} role="status" aria-live="polite">{busy?"Reading the patch and recalling past decisions":left>0?"Memory settling, "+left+"s":until?"Memory ready":""}</span></div>
               {left>0&&<div className="settle" aria-hidden="true"><div style={{width:((10-left)/10*100)+"%"}}/></div>}
