@@ -146,7 +146,7 @@ input[type=range]{width:100%;accent-color:#6CCB8A}
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @keyframes fade{from{opacity:0}}
 @keyframes grow{from{transform:scaleX(0)}}
-@media(prefers-reduced-motion:reduce){.cur,.mk i:last-child,.toast,.rc.on .sq,.tot b,.dot,.bar div,.mb{animation:none}.draw{animation:none;stroke-dasharray:none}}
+@media(prefers-reduced-motion:reduce){.cur,.mk i:last-child,.toast,.rc.on .sq,.rc.on .sq.r,.tot b,.dot,.bar div,.mb{animation:none}.draw{animation:none;stroke-dasharray:none}}
 @media print{.top,footer,.toast{display:none}}
 </style>
 </head>
@@ -168,6 +168,7 @@ const LEGAL={
   "Accounts, cookies and analytics are not used.",
   "When you press Review, the diff you selected is sent to Groq, which runs the language model that writes the comments.",
   "Each Accept or Reject, with the text of the comment and any reason you pick, is stored in a Hindsight memory bank so later reviews can recall it. A copy of the decision log is also kept in data/decisions.json on the machine running the server.",
+  "The page loads fonts from Google Fonts and scripts from cdnjs, so those services see your IP address when it loads.",
   "Delete that file and the memory bank to remove what the desk has learned."]]};
 
 function Legal({which,onClose}){
@@ -263,7 +264,7 @@ function Progress({m}){
     io.observe(el);
     return()=>{io.disconnect();clearTimeout(tm);cancelAnimationFrame(raf.current)}},[N]);
   if(!N) return null;
-  const mx=Math.max(1,...A,...B),X=i=>44+(N>1?i*(500/(N-1)):250),Y=v=>168-v/mx*140;
+  const mx=Math.max(1,...A,...B),X=i=>44+(N>1?i*(500/(N-1)):250),Y=v=>162-v/mx*134;
   const f=Math.max(0,t)*(N-1),k=Math.min(N-1,Math.floor(f)),fr=f-k;
   const part=a=>{const p=a.slice(0,k+1).map((v,i)=>[X(i),Y(v)]);
     if(k<N-1)p.push([X(k)+(X(k+1)-X(k))*fr,Y(a[k])+(Y(a[k+1])-Y(a[k]))*fr]);return p};
@@ -378,6 +379,7 @@ function ResultsPage({m}){
     <h2 className="h" style={{margin:"36px 0 14px"}}>How this was measured</h2>
     <p>Real merged pull requests from the Flask repository were replayed in the order they were merged. A scripted reviewer accepted security, validation, error handling and bug comments and rejected everything else.</p>
     <p>The same pull requests ran twice, once with the memory bank and once without. A repeated rejection is a comment in a category the team had already rejected on an earlier pull request.</p>
+    <p>The measured replay used Hindsight recall only. The category rules the live app builds from your decision log were not part of it.</p>
     <p>Each run was made once and model output varies, so exact figures shift between runs. The accepted counts are not a stable effect: in an earlier run on 10 pull requests they went down with memory, and in this one they went up.</p>
   </div>;
 }
